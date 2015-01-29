@@ -6,7 +6,7 @@ Setup / Run
 - Open cow-wrangler.py
 - Change CONNECTION_STRING and DEBUG to the appropriate values
 - From the root of the project run `python cow-wrangler.py`
-- Go to http://localhost:5000 in your browser.
+- Go to http://localhost:5000 in your browser
 
 To Use
 ------
