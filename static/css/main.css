@@ -1,0 +1,31 @@
+.breadcrumb > li:first-child+li:before {
+	content: normal;
+}
+
+.breadcrumb > li:last-of-type>a {
+	pointer-events: none;
+
+	box-shadow: 0 0 5px rgba(0, 0, 255, 1);
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 255, 1);
+	-moz-box-shadow: 0 0 5px rgba(0, 0, 255, 1);
+}
+
+.breadcrumb > li+li:last-of-type:after {
+	padding: 0 5px;
+	color: #ccc;
+	content: "/\00a0"
+}
+
+.children li {
+	list-style-type: none;
+	padding-bottom: 5px;
+}
+
+.children li:before {
+	content: '/';
+}
+
+.create-options .data label,
+.create-options .data textarea {
+	width: 100%;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="cow-wrangler">
+<head>
+	<title>Cow Wrangler</title>
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body ng-controller="MainController">
+<div class="container" role="main">
+	<div class="row-fluid show-grid">
+		<div class="span4" ng-repeat="(path, data) in paths">
+			<div class="path"><h3>{{path}} <a ng-click="deletePath(path)" ng-hide="path == '/' || !data.exists" class="btn btn-danger btn-xs">Delete</a><a ng-click="createPath(path, ephemeral, sequence, createContent)" ng-hide="data.exists" class="btn btn-primary btn-xs">Create</a></h3></div>
+			<div class="create-options" ng-hide="data.exists">
+				<label><input type="checkbox" ng-model="ephemeral"/> Ephemeral</label>
+				<label><input type="checkbox" ng-model="sequence"/> Sequential</label>
+				<div class="data">
+					<label>Data<br/><textarea ng-model="createContent"></textarea></label>
+				</div>
+			</div>
+			<pre class="data alert alert-info" ng-show="data.data">{{data.data}}</pre>
+			<ul class="children" ng-show="data.children.length">
+				<li ng-repeat="child in data.children">
+					<a class="btn btn-default" ng-click="pushPathItem(child)">{{child}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<ul class="breadcrumb">
+			<li>
+				<a class="btn btn-default" ng-click="clearPath()">/</a>
+			</li>
+			<li ng-repeat="pathItem in pathStack track by $index">
+				<a class="btn btn-default" ng-click="trimPathTo($index)">{{pathItem}}</a>
+			</li>
+			<input type="text" ng-model="path" ng-keypress="pushPathItemKeyPress(path, $event)"/>
+		</ul>
+
+	</div>
+</div>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+<script src="static/js/controller.js"></script>
+</body>
+</html>
